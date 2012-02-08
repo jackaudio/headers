@@ -26,6 +26,7 @@ extern "C" {
 
 #include <pthread.h>
 #include <jack/weakmacros.h>
+#include <jack/types.h>
 
 /* use 512KB stack per thread - the default is way too high to be feasible 
  * with mlockall() on many systems */
