@@ -23,6 +23,9 @@
 
 #include <inttypes.h>
 #include <pthread.h>
+#include <uuid/uuid.h>
+
+typedef uuid_t jack_uuid_t;
 
 typedef int32_t jack_shmsize_t;
 
