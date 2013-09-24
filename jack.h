@@ -621,6 +621,13 @@ void *jack_port_get_buffer (jack_port_t *, jack_nframes_t) JACK_OPTIONAL_WEAK_EX
 const char *jack_port_name (const jack_port_t *port) JACK_OPTIONAL_WEAK_EXPORT;
 
 /**
+ * @return the UUID of the jack_port_t
+ *
+ * @see jack_uuid_to_string() to convert into a string representation
+ */
+void jack_port_uuid (const jack_port_t *port, jack_uuid_t) JACK_OPTIONAL_WEAK_EXPORT;
+
+/**
  * @return the short name of the jack_port_t (not including the @a
  * "client_name:" prefix).
  *
