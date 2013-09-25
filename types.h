@@ -57,7 +57,7 @@ typedef uint64_t jack_time_t;
  *  client.  You may only access it using the API provided in @ref
  *  intclient.h "<jack/intclient.h>".
  */
-typedef uint64_t jack_intclient_t;
+typedef jack_uuid_t jack_intclient_t;
 
 /**
  *  jack_port_t is an opaque type.  You may only access it using the

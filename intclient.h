@@ -45,7 +45,7 @@ char *jack_get_internal_client_name (jack_client_t *client,
 				     jack_intclient_t intclient);
 
 /**
- * Return the @ref jack_intclient_t handle for an internal client
+ * Find the @ref jack_intclient_t handle for an internal client
  * running in the JACK server.
  *
  * @param client requesting JACK client's handle.
@@ -58,13 +58,18 @@ char *jack_get_internal_client_name (jack_client_t *client,
  * information from this operation.  This status word is formed by
  * OR-ing together the relevant @ref JackStatus bits.
  *
- * @return Opaque internal client handle if successful.  If 0, the
+ * @param handle the client handle will be returned here (passed
+ * by reference because of the type.
+ *
+ * @return 0 if successfullm non-zero otherwise.
+ * If non-zero, the
  * internal client was not found, and @a *status includes the @ref
  * JackNoSuchClient and @ref JackFailure bits.
  */
-jack_intclient_t jack_internal_client_handle (jack_client_t *client,
-					      const char *client_name,
-					      jack_status_t *status);
+int jack_internal_client_handle (jack_client_t *client,
+                                 const char *client_name,
+                                 jack_status_t *status,
+                                 jack_intclient_t handle);
 
 /**
  * Load an internal client into the JACK server.
@@ -88,6 +93,9 @@ jack_intclient_t jack_internal_client_handle (jack_client_t *client,
  * information from the load operation.  This status word is formed by
  * OR-ing together the relevant @ref JackStatus bits.
  *
+ * @param handle the client handle will be returned here (passed
+ * by reference because of the type.
+ *
  * <b>Optional parameters:</b> depending on corresponding [@a options
  * bits] additional parameters may follow @a status (in this order).
  *
@@ -99,14 +107,15 @@ jack_intclient_t jack_internal_client_handle (jack_client_t *client,
  * string passed to the internal client's jack_initialize() routine
  * (otherwise NULL), of no more than @ref JACK_LOAD_INIT_LIMIT bytes.
  *
- * @return Opaque internal client handle if successful.  If this is 0,
+ * @return zero if successful, non-zero otherwise.  If this is non-zero,
  * the load operation failed, the internal client was not loaded, and
  * @a *status includes the @ref JackFailure bit.
  */
-jack_intclient_t jack_internal_client_load (jack_client_t *client,
-					    const char *client_name,
-					    jack_options_t options,
-					    jack_status_t *status, ...);
+int jack_internal_client_load (jack_client_t *client,
+                               const char *client_name,
+                               jack_options_t options,
+                               jack_status_t *status, 
+                               jack_intclient_t, ...);
 /**
  * Unload an internal client from a JACK server.  This calls the
  * intclient's jack_finish() entry point then removes it.  See @ref
