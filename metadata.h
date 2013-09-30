@@ -70,7 +70,8 @@ typedef struct {
  * @return 0 on success.
  */
 int
-jack_set_property(jack_uuid_t subject,
+jack_set_property(jack_client_t*,
+                  jack_uuid_t subject,
                   const char* key,
                   const char* value,
                   const char* type);
@@ -132,10 +133,9 @@ int
 jack_get_all_properties (jack_description_t** descs);
 
 
-int jack_remove_property (jack_uuid_t subject, const char* key);
-int jack_remove_properties (jack_uuid_t subject);
-
-int jack_remove_all_properties (void);
+int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
+int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
+int jack_remove_all_properties (jack_client_t*);
 
 typedef enum {
         PropertyCreated,
