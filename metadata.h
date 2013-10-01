@@ -1,6 +1,6 @@
 /*
-  Copyright (C) 2001 Paul Davis
   Copyright (C) 2011 David Robillard
+  Copyright (C) 2013 Paul Davis
     
   This program is free software; you can redistribute it and/or modify it
   under the terms of the GNU Lesser General Public License as published by
@@ -132,9 +132,35 @@ jack_get_properties (jack_uuid_t          subject,
 int
 jack_get_all_properties (jack_description_t** descs);
 
-
+/** Remove a single property on a subject
+ *
+ * @param client The JACK client making the request to remove the property.
+ * @param subject The subject to remove the property from.
+ * @param key The key of the property to be removed.
+ *
+ * @return 0 on success, -1 otherwise
+ */
 int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
+
+/** Remove all properties on a subject
+ *
+ * @param client The JACK client making the request to remove some properties.
+ * @param subject The subject to remove all properties from.
+ *
+ * @return 0 on success, -1 otherwise
+ */
 int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
+
+/** Remove all properties
+ *
+ * WARNING!! This deletes all metadata managed by a running JACK server. 
+ * Data lost cannot be recovered (though it can be recreated by new calls
+ * to jack_set_property()). 
+ * 
+ * @param client The JACK client making the request to remove all properties
+ *
+ * @return 0 on success, -1 otherwise
+ */
 int jack_remove_all_properties (jack_client_t*);
 
 typedef enum {
@@ -148,10 +174,14 @@ typedef void (*JackPropertyChangeCallback)(jack_uuid_t subject,
                                            jack_property_change_t change,
                                            void* arg);
 
+/** Arrange for @param client to call @param callback whenever
+ * a property is created, changed or deleted.
+ *
+ * @return 0 success, -1 otherwise.
+ */
 int jack_set_property_change_callback (jack_client_t* client,
                                        JackPropertyChangeCallback callback,
                                        void *arg);
-
 
 #ifdef __cplusplus
 } /* namespace */
