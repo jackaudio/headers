@@ -100,15 +100,20 @@ jack_get_property(jack_uuid_t subject,
  * A description of a subject (a set of properties).
  */
 typedef struct {
-	jack_uuid_t      subject;     /**< The subject being described. */
-	jack_property_t* properties;  /**< An array of properties. */
+    jack_uuid_t      subject;     /**< The subject being described. */
+    uint32_t         property_cnt;/**< The number of properties stored in "properties" */
+    jack_property_t* properties;  /**< An array of properties. */
+    uint32_t         property_size; /**< private, don't use or touch */
 } jack_description_t;
 
 /**
  * Free a description.
+ *
+ * @param desc a jack_description_t whose associated memory will all be released
+ * @param free_description_itself if non-zero, then @param desc will also be passed to free()
  */
 void
-jack_free_description(jack_description_t* desc);
+jack_free_description(jack_description_t* desc, int free_description_itself);
 
 /**
  * Get a description of @c subject.
