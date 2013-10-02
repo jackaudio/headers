@@ -152,7 +152,7 @@ int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
  * @param client The JACK client making the request to remove some properties.
  * @param subject The subject to remove all properties from.
  *
- * @return 0 on success, -1 otherwise
+ * @return a count of the number of properties removed, or -1 if an error occurs
  */
 int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
 
