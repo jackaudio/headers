@@ -25,6 +25,7 @@
 #define JACK_UUID_SIZE 36
 #define JACK_UUID_STRING_SIZE (JACK_UUID_SIZE+1) /* includes trailing null */
 
+extern void jack_uuid_generate (jack_uuid_t);
 extern int  jack_uuid_compare (const jack_uuid_t, const jack_uuid_t);
 extern void jack_uuid_copy (jack_uuid_t dst, const jack_uuid_t src);
 extern void jack_uuid_clear (jack_uuid_t);
