@@ -196,4 +196,11 @@ int jack_set_property_change_callback (jack_client_t* client,
  * @}
  */
 
+extern const char* JACK_METADATA_PRETTY_NAME;
+extern const char* JACK_METADATA_HARDWARE;
+extern const char* JACK_METADATA_CONNECTED;
+extern const char* JACK_METADATA_PORT_GROUP;
+extern const char* JACK_METADATA_ICON_SMALL;
+extern const char* JACK_METADATA_ICON_LARGE;
+
 #endif  /* __jack_metadata_h__ */
