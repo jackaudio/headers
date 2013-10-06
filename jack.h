@@ -118,6 +118,22 @@ int jack_client_name_size (void) JACK_OPTIONAL_WEAK_EXPORT;
 char *jack_get_client_name (jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
 
 /**
+ * @return pointer to a string representation of the UUID for
+ * a client named @param name. If no such client exists, return NULL
+ */
+char *jack_get_uuid_for_client_name (jack_client_t *client,
+                                     const char    *name) JACK_WEAK_EXPORT;
+
+/**
+ * @return a pointer to the name of the client with the UUID
+ * specified by @param uuid.
+ *
+ * Return NULL if no such client with the given UUID exists
+ */
+char *jack_get_client_name_by_uuid (jack_client_t *client,
+                                    const char    *uuid ) JACK_WEAK_EXPORT;
+
+/**
  * Load an internal client into the Jack server.
  *
  * Internal clients run inside the JACK server process.  They can use
