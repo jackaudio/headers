@@ -373,6 +373,17 @@ typedef void (*JackPortRegistrationCallback)(jack_port_id_t port, int register, 
 
 /**
  * Prototype for the client supplied function that is called 
+ * whenever a port is renamed
+ *
+ * @param port the ID of the port 
+ * @param arg pointer to a client supplied data
+ * @param old_name the name of the port before the rename was carried out
+ * @param new_name the name of the port after the rename was carried out
+ */ 
+typedef void (*JackPortRenameCallback)(jack_port_id_t port, const char* old_name, const char* new_name, void* arg);
+
+/**
+ * Prototype for the client supplied function that is called 
  * whenever a client is registered or unregistered.
  *
  * @param name a null-terminated string containing the client name 
