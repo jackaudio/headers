@@ -1,17 +1,17 @@
 /*
   Copyright (C) 2011 David Robillard
   Copyright (C) 2013 Paul Davis
-    
+
   This program is free software; you can redistribute it and/or modify it
   under the terms of the GNU Lesser General Public License as published by
   the Free Software Foundation; either version 2.1 of the License, or (at
   your option) any later version.
-    
+
   This program is distributed in the hope that it will be useful, but WITHOUT
   ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
   FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
   License for more details.
-    
+
   You should have received a copy of the GNU Lesser General Public License
   along with this program; if not, write to the Free Software Foundation,
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -35,29 +35,32 @@ extern "C" {
  * A single property (key:value pair).
  */
 typedef struct {
-    const char* key;   /**< The key of this property (URI string). */
-    const char* data;  /**< The property value (null-terminated string) */
-    const char* type;  /**< MIME type of data. Likely values are:
-                        *
-                        * text/utf8  (for an null terminated string)
-                        * image/png;base64 (for a data-URI converted image)
-                        *
-                        * If type is null (or empty), the type should
-                        * be assumed to be "text/utf8" and the memory
-                        * pointed to by "data" should be interpreted
-                        * as a null-terminated string encoded using UTF-8.
-                        *
-                        * If the type is image/png;base64, the memory 
-                        * pointed to by "data" should be interpreted as 
-                        * a base64 encoded PNG image.
-                        *
-                        * Other types are subject to the shared understanding
-                        * of the mime type by both the setter and retriever
-                        * of the property.
-                        */
+    /** The key of this property (URI string). */
+    const char* key;
+
+    /** The property value (null-terminated string). */
+    const char* data;
+
+    /**
+     * Type of data, either a MIME type or URI.
+     *
+     * If type is NULL or empty, the data is assumed to be a UTF-8 encoded
+     * string (text/plain). The data is a null-terminated string regardless of
+     * type, so values can always be copied, but clients should not try to
+     * interpret values of an unknown type.
+     *
+     * Example values:
+     * - image/png;base64 (base64 encoded PNG image)
+     * - http://www.w3.org/2001/XMLSchema#int (integer)
+     *
+     * Official types are preferred, but clients may use any syntactically
+     * valid MIME type (which start with a type and slash, like "text/...").
+     * If a URI type is used, it must be a complete absolute URI
+     * (which start with a scheme and colon, like "http:").
+     */
+    const char* type;
 } jack_property_t;
 
-        
 /**
  * Set a property on @p subject.
  *
@@ -65,7 +68,7 @@ typedef struct {
  * @param subject The subject to set the property on.
  * @param key The key of the property.
  * @param value The value of the property.
- * @param type The MIME type of the property. See the discussion of
+ * @param type The type of the property. See the discussion of
  *             types in the definition of jack_property_t above.
  * @return 0 on success.
  */
@@ -83,10 +86,9 @@ jack_set_property(jack_client_t*,
  * @param key The key of the property.
  * @param value Set to the value of the property if found, or NULL otherwise.
  *              The caller must free this value with jack_free().
- * @param type The MIME type of the property if set, or
- *              NULL. See the discussion of types in the definition of
- *              jack_property_t above.  If non-null, the caller must free
- *              this value with jack_free().
+ * @param type The type of the property if set, or NULL. See the discussion
+ *             of types in the definition of jack_property_t above.
+ *             If non-null, the caller must free this value with jack_free().
  *
  * @return 0 on success, -1 if the @p subject has no @p key property.
  */
@@ -161,10 +163,10 @@ int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
 /**
  * Remove all properties.
  *
- * WARNING!! This deletes all metadata managed by a running JACK server. 
+ * WARNING!! This deletes all metadata managed by a running JACK server.
  * Data lost cannot be recovered (though it can be recreated by new calls
- * to jack_set_property()). 
- * 
+ * to jack_set_property()).
+ *
  * @param client The JACK client making the request to remove all properties
  *
  * @return 0 on success, -1 otherwise
