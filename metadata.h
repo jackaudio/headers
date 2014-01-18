@@ -39,8 +39,8 @@ typedef struct {
     const char* data;  /**< The property value (null-terminated string) */
     const char* type;  /**< MIME type of data. Likely values are:
                         *
-                        *  text/utf8  (for an null terminated string)
-                        *  image/png;base64 (for a data-URI converted image)
+                        * text/utf8  (for an null terminated string)
+                        * image/png;base64 (for a data-URI converted image)
                         *
                         * If type is null (or empty), the type should
                         * be assumed to be "text/utf8" and the memory
@@ -59,14 +59,14 @@ typedef struct {
 
         
 /**
- * Set a property on @c subject.
+ * Set a property on @p subject.
  *
- * See the above documentation for rules about @c subject and @c key.
+ * See the above documentation for rules about @p subject and @p key.
  * @param subject The subject to set the property on.
  * @param key The key of the property.
  * @param value The value of the property.
  * @param type The MIME type of the property. See the discussion of
- *              types in the definition of jack_property_t above.
+ *             types in the definition of jack_property_t above.
  * @return 0 on success.
  */
 int
@@ -77,7 +77,7 @@ jack_set_property(jack_client_t*,
                   const char* type);
 
 /**
- * Get a property on @c subject.
+ * Get a property on @p subject.
  *
  * @param subject The subject to get the property from.
  * @param key The key of the property.
@@ -88,7 +88,7 @@ jack_set_property(jack_client_t*,
  *              jack_property_t above.  If non-null, the caller must free
  *              this value with jack_free().
  *
- * @return 0 on success, -1 if the @c subject has no @c key property.
+ * @return 0 on success, -1 if the @p subject has no @p key property.
  */
 int
 jack_get_property(jack_uuid_t subject,
@@ -100,10 +100,10 @@ jack_get_property(jack_uuid_t subject,
  * A description of a subject (a set of properties).
  */
 typedef struct {
-    jack_uuid_t      subject;     /**< The subject being described. */
-    uint32_t         property_cnt;/**< The number of properties stored in "properties" */
-    jack_property_t* properties;  /**< An array of properties. */
-    uint32_t         property_size; /**< private, don't use or touch */
+    jack_uuid_t      subject;        /**< Subject being described. */
+    uint32_t         property_cnt;   /**< Number of elements in "properties". */
+    jack_property_t* properties;     /**< Array of properties. */
+    uint32_t         property_size;  /**< Private, do not use. */
 } jack_description_t;
 
 /**
@@ -113,18 +113,18 @@ typedef struct {
  * @param free_description_itself if non-zero, then @param desc will also be passed to free()
  */
 void
-jack_free_description(jack_description_t* desc, int free_description_itself);
+jack_free_description (jack_description_t* desc, int free_description_itself);
 
 /**
- * Get a description of @c subject.
+ * Get a description of @p subject.
  * @param subject The subject to get all properties of.
  * @param desc Set to the description of subject if found, or NULL otherwise.
  *             The caller must free this value with jack_free_desription().
- * @return 0 on success, -1 if no @c subject with any properties exists.
+ * @return 0 on success, -1 if no @p subject with any properties exists.
  */
 int
-jack_get_properties (jack_uuid_t          subject,
-                     jack_description_t*  desc);
+jack_get_properties (jack_uuid_t         subject,
+                     jack_description_t* desc);
 
 /**
  * Get descriptions for all subjects with metadata.
@@ -137,7 +137,8 @@ jack_get_properties (jack_uuid_t          subject,
 int
 jack_get_all_properties (jack_description_t** descs);
 
-/** Remove a single property on a subject
+/**
+ * Remove a single property on a subject.
  *
  * @param client The JACK client making the request to remove the property.
  * @param subject The subject to remove the property from.
@@ -147,16 +148,18 @@ jack_get_all_properties (jack_description_t** descs);
  */
 int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
 
-/** Remove all properties on a subject
+/**
+ * Remove all properties on a subject.
  *
  * @param client The JACK client making the request to remove some properties.
  * @param subject The subject to remove all properties from.
  *
- * @return a count of the number of properties removed, or -1 if an error occurs
+ * @return a count of the number of properties removed, or -1 on error.
  */
 int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
 
-/** Remove all properties
+/**
+ * Remove all properties.
  *
  * WARNING!! This deletes all metadata managed by a running JACK server. 
  * Data lost cannot be recovered (though it can be recreated by new calls
@@ -174,19 +177,20 @@ typedef enum {
         PropertyDeleted
 } jack_property_change_t;
 
-typedef void (*JackPropertyChangeCallback)(jack_uuid_t subject,
-                                           const char* key,
+typedef void (*JackPropertyChangeCallback)(jack_uuid_t            subject,
+                                           const char*            key,
                                            jack_property_change_t change,
-                                           void* arg);
+                                           void*                  arg);
 
-/** Arrange for @param client to call @param callback whenever
- * a property is created, changed or deleted.
+/**
+ * Arrange for @p client to call @p callback whenever a property is created,
+ * changed or deleted.
  *
  * @return 0 success, -1 otherwise.
  */
-int jack_set_property_change_callback (jack_client_t* client,
+int jack_set_property_change_callback (jack_client_t*             client,
                                        JackPropertyChangeCallback callback,
-                                       void *arg);
+                                       void*                      arg);
 
 #ifdef __cplusplus
 } /* namespace */
