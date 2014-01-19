@@ -26,8 +26,8 @@
  *
  */
 
-#ifndef JACKCTL_H__2EEDAD78_DF4C_4B26_83B7_4FF1A446A47E__INCLUDED
-#define JACKCTL_H__2EEDAD78_DF4C_4B26_83B7_4FF1A446A47E__INCLUDED
+#ifndef __jack_control_h__
+#define __jack_control_h__
 
 #include <jack/jslist.h>
 
@@ -562,4 +562,4 @@ jack_log(
 } /* extern "C" */
 #endif
 
-#endif /* #ifndef JACKCTL_H__2EEDAD78_DF4C_4B26_83B7_4FF1A446A47E__INCLUDED */
+#endif /* __jack_control_h__ */
