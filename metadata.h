@@ -17,6 +17,13 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
+/**
+ * @file   jack/metadata.h
+ * @ingroup publicheader
+ * @brief  JACK Metadata API
+ *
+ */
+
 #ifndef __jack_metadata_h__
 #define __jack_metadata_h__
 
