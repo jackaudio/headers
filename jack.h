@@ -119,15 +119,24 @@ char *jack_get_client_name (jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
 
 /**
  * @return pointer to a string representation of the UUID for
- * a client named @param name. If no such client exists, return NULL
+ * a client named @param name . If no such client exists, return NULL
+ *
+ * @param client the client making the request
+ * @param name   the name of the client whose UUID is desired
+ *
+ * Return NULL if no such client with the given name exists
+ *
  */
 char *jack_get_uuid_for_client_name (jack_client_t *client,
                                      const char    *name) JACK_WEAK_EXPORT;
 
 /**
  * @return a pointer to the name of the client with the UUID
- * specified by @param uuid.
+ * specified by uuid.
  *
+ * @param client making the request
+ * @param uuid   the uuid of the client whose name is desired
+ * 
  * Return NULL if no such client with the given UUID exists
  */
 char *jack_get_client_name_by_uuid (jack_client_t *client,

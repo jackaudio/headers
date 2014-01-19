@@ -135,7 +135,6 @@ jack_get_properties (jack_uuid_t          subject,
 
 /**
  * Get descriptions for all subjects with metadata.
- * @param subject The subject to get all properties of.
  * @param descs Set to a NULL-terminated array of descriptions.
  *              The caller must free each of these with jack_free_desription(),
  *              and the array itself with jack_free().
@@ -152,7 +151,7 @@ jack_get_all_properties (jack_description_t** descs);
  *
  * @return 0 on success, -1 otherwise
  */
-int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
+int jack_remove_property (jack_client_t* client, jack_uuid_t subject, const char* key);
 
 /** Remove all properties on a subject
  *
@@ -161,7 +160,7 @@ int jack_remove_property (jack_client_t*, jack_uuid_t subject, const char* key);
  *
  * @return a count of the number of properties removed, or -1 if an error occurs
  */
-int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
+int jack_remove_properties (jack_client_t* client, jack_uuid_t subject);
 
 /** Remove all properties
  *
@@ -173,7 +172,7 @@ int jack_remove_properties (jack_client_t*, jack_uuid_t subject);
  *
  * @return 0 on success, -1 otherwise
  */
-int jack_remove_all_properties (jack_client_t*);
+int jack_remove_all_properties (jack_client_t* client);
 
 typedef enum {
         PropertyCreated,
@@ -188,6 +187,10 @@ typedef void (*JackPropertyChangeCallback)(jack_uuid_t subject,
 
 /** Arrange for @param client to call @param callback whenever
  * a property is created, changed or deleted.
+ *
+ * @param client the JACK client making the request
+ * @param callback the function to be invoked when a property change occurs
+ * @param arg the argument to be passed to @param callback when it is invoked
  *
  * @return 0 success, -1 otherwise.
  */
