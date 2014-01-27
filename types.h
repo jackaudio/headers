@@ -38,7 +38,11 @@ typedef int32_t jack_shmsize_t;
    than use the natural alignment of the processor and/or
    compiler.
 */
+#ifdef __arm__
+#  define POST_PACKED_STRUCTURE
+#else
 #  define POST_PACKED_STRUCTURE __attribute__((__packed__))
+#endif /* ARM */
 #else
 /* Add other things here for non-gcc platforms */
 #endif
