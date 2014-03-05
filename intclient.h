@@ -69,7 +69,7 @@ char *jack_get_internal_client_name (jack_client_t *client,
 int jack_internal_client_handle (jack_client_t *client,
                                  const char *client_name,
                                  jack_status_t *status,
-                                 jack_intclient_t handle);
+                                 jack_intclient_t *handle);
 
 /**
  * Load an internal client into the JACK server.
