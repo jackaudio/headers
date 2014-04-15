@@ -23,7 +23,6 @@
 
 #include <inttypes.h>
 #include <pthread.h>
-#include <uuid/uuid.h>
 
 typedef uint64_t jack_uuid_t;
 
