@@ -280,8 +280,6 @@ typedef enum JackLatencyCallbackMode jack_latency_callback_mode_t;
  *
  * @param mode playback or capture latency
  * @param arg pointer to a client supplied data
- *
- * @return zero on success, non-zero on error
  */ 
 typedef void (*JackLatencyCallback)(jack_latency_callback_mode_t mode, void *arg);
 
