@@ -404,8 +404,8 @@ int jack_set_port_registration_callback (jack_client_t *,
 
 
 /**
- * Tell the JACK server to call @a registration_callback whenever a
- * port is registered or unregistered, passing @a arg as a parameter.
+ * Tell the JACK server to call @a rename_callback whenever a
+ * port is renamed, passing @a arg as a parameter.
  *
  * @return 0 on success, otherwise a non-zero error code
  */
