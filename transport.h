@@ -111,7 +111,7 @@ typedef struct {
                                              */
     int32_t		tick;		/**< current tick-within-beat 
 
-                                             Should be >0 and <=ticks_per_beat:
+                                             Should be >= 0 and < ticks_per_beat:
                                              the first tick is tick '0'. */
     double		bar_start_tick; /**< number of ticks that have elapsed 
                                              between frame 0 and the first beat
@@ -119,7 +119,7 @@ typedef struct {
 
     float		beats_per_bar;	/**< time signature "numerator" */
     float		beat_type;	/**< time signature "denominator" */
-    double		ticks_per_beat; /**< number of ticks within a bar. 
+    double		ticks_per_beat; /**< number of ticks within a beat. 
 
                                              Usually a moderately large integer
                                              with many denominators, such as 
