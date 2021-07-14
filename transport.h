@@ -182,7 +182,7 @@ typedef struct {
     /*}@*/
 
     /*@{*/
-    /* JACK extra transport fields */
+    /** @name JACK Extra transport fields */
     double              tick_double; /**< current tick-within-beat in double resolution.
 					     Should be assumed zero if JackTickDouble is not set.
 					     Since older versions of JACK do not expose this variable,
