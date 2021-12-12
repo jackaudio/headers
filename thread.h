@@ -25,6 +25,7 @@ extern "C" {
 #endif
 
 #include <pthread.h>
+#include <jack/systemdeps.h>
 #include <jack/weakmacros.h>
 #include <jack/types.h>
 
