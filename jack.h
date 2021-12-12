@@ -25,6 +25,7 @@
 extern "C" {
 #endif
 
+#include <jack/systemdeps.h>
 #include <jack/types.h>
 #include <jack/transport.h>
 
