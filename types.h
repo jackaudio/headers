@@ -1,19 +1,19 @@
 /*
     Copyright (C) 2001 Paul Davis
     Copyright (C) 2004 Jack O'Quin
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation; either version 2.1 of the License, or
     (at your option) any later version.
-    
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    
+
     You should have received a copy of the GNU Lesser General Public License
-    along with this program; if not, write to the Free Software 
+    along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 */
@@ -268,12 +268,12 @@ enum JackLatencyCallbackMode {
 typedef enum JackLatencyCallbackMode jack_latency_callback_mode_t;
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * by the engine when port latencies need to be recalculated
  *
  * @param mode playback or capture latency
  * @param arg pointer to a client supplied data
- */ 
+ */
 typedef void (*JackLatencyCallback)(jack_latency_callback_mode_t mode, void *arg);
 
 /**
@@ -294,7 +294,7 @@ struct _jack_latency_range
 typedef struct _jack_latency_range jack_latency_range_t;
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * by the engine anytime there is work to be done.
  *
  * @pre nframes == jack_get_buffer_size()
@@ -304,11 +304,11 @@ typedef struct _jack_latency_range jack_latency_range_t;
  * @param arg pointer to a client supplied data
  *
  * @return zero on success, non-zero on error
- */ 
+ */
 typedef int  (*JackProcessCallback)(jack_nframes_t nframes, void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * once after the creation of the thread in which other
  * callbacks will be made. Special thread characteristics
  * can be set from this callback, for example. This is a
@@ -318,17 +318,17 @@ typedef int  (*JackProcessCallback)(jack_nframes_t nframes, void *arg);
  * @param arg pointer to a client supplied structure
  *
  * @return void
- */ 
+ */
 typedef void  (*JackThreadInitCallback)(void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever the processing graph is reordered.
  *
  * @param arg pointer to a client supplied data
  *
  * @return zero on success, non-zero on error
- */ 
+ */
 typedef int  (*JackGraphOrderCallback)(void *arg);
 
 /**
@@ -340,7 +340,7 @@ typedef int  (*JackGraphOrderCallback)(void *arg);
  * @param arg pointer to a client supplied data
  *
  * @return zero on success, non-zero on error
- */ 
+ */
 typedef int  (*JackXRunCallback)(void *arg);
 
 /**
@@ -356,55 +356,55 @@ typedef int  (*JackXRunCallback)(void *arg);
  * @param arg pointer supplied by jack_set_buffer_size_callback().
  *
  * @return zero on success, non-zero on error
- */ 
+ */
 typedef int  (*JackBufferSizeCallback)(jack_nframes_t nframes, void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * when the engine sample rate changes.
  *
  * @param nframes new engine sample rate
  * @param arg pointer to a client supplied data
  *
  * @return zero on success, non-zero on error
- */ 
+ */
 typedef int  (*JackSampleRateCallback)(jack_nframes_t nframes, void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever a port is registered or unregistered.
  *
- * @param port the ID of the port 
+ * @param port the ID of the port
  * @param arg pointer to a client supplied data
  * @param register non-zero if the port is being registered,
  *                     zero if the port is being unregistered
- */ 
+ */
 typedef void (*JackPortRegistrationCallback)(jack_port_id_t port, int /* register */, void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever a port is renamed
  *
- * @param port the ID of the port 
+ * @param port the ID of the port
  * @param arg pointer to a client supplied data
  * @param old_name the name of the port before the rename was carried out
  * @param new_name the name of the port after the rename was carried out
- */ 
+ */
 typedef void (*JackPortRenameCallback)(jack_port_id_t port, const char* old_name, const char* new_name, void* arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever a client is registered or unregistered.
  *
- * @param name a null-terminated string containing the client name 
+ * @param name a null-terminated string containing the client name
  * @param register non-zero if the client is being registered,
  *                     zero if the client is being unregistered
  * @param arg pointer to a client supplied data
- */ 
+ */
 typedef void (*JackClientRegistrationCallback)(const char* name, int /* register */, void *arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever ports are connected or disconnected.
  *
  * @param a one of two ports connected or disconnected
@@ -412,11 +412,11 @@ typedef void (*JackClientRegistrationCallback)(const char* name, int /* register
  * @param connect non-zero if ports were connected
  *                    zero if ports were disconnected
  * @param arg pointer to a client supplied data
- */ 
+ */
 typedef void (*JackPortConnectCallback)(jack_port_id_t a, jack_port_id_t b, int connect, void* arg);
 
 /**
- * Prototype for the client supplied function that is called 
+ * Prototype for the client supplied function that is called
  * whenever jackd starts or stops freewheeling.
  *
  * @param starting non-zero if we start starting to freewheel, zero otherwise
@@ -492,7 +492,7 @@ enum JackPortFlags {
       * if JackPortIsPhysical is set, then the port corresponds
       * to some kind of physical I/O connector.
       */
-     JackPortIsPhysical = 0x4, 
+     JackPortIsPhysical = 0x4,
 
      /**
       * if JackPortCanMonitor is set, then a call to
@@ -503,7 +503,7 @@ enum JackPortFlags {
       * that data that would be available from an output port (with
       * JackPortIsPhysical set) is sent to a physical output connector
       * as well, so that it can be heard/seen/whatever.
-      * 
+      *
       * Clients that do not control physical interfaces
       * should never create ports with this bit set.
       */
@@ -524,7 +524,7 @@ enum JackPortFlags {
       * their ports.
       */
      JackPortIsTerminal = 0x10
-};	    
+};
 
 
 #endif /* __jack_types_h__ */
