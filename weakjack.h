@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __weakjack_h__
-#define __weakjack_h__
+#ifndef JACK_WEAKJACK_H
+#define JACK_WEAKJACK_H
 
 /**
  * @defgroup WeakLinkage managing support for newer/older versions of JACK
@@ -121,4 +121,4 @@
 
 /*@}*/
 
-#endif /* weakjack */
+#endif /* JACK_WEAKJACK_H */

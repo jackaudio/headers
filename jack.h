@@ -17,8 +17,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_h__
-#define __jack_h__
+#ifndef JACK_JACK_H
+#define JACK_JACK_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -1334,4 +1334,4 @@ void jack_free(void* ptr) JACK_OPTIONAL_WEAK_EXPORT;
 }
 #endif
 
-#endif /* __jack_h__ */
+#endif /* JACK_JACK_H */

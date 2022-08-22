@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __JACK_MIDIPORT_H
-#define __JACK_MIDIPORT_H
+#ifndef JACK_MIDIPORT_H
+#define JACK_MIDIPORT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -166,5 +166,6 @@ jack_midi_get_lost_event_count(void           *port_buffer) JACK_OPTIONAL_WEAK_E
 }
 #endif
 
+#endif /* JACK_MIDIPORT_H */
 
-#endif /* __JACK_MIDIPORT_H */
+

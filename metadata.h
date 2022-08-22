@@ -24,8 +24,8 @@
  *
  */
 
-#ifndef __jack_metadata_h__
-#define __jack_metadata_h__
+#ifndef JACK_METADATA_H
+#define JACK_METADATA_H
 
 #include <jack/types.h>
 
@@ -319,4 +319,4 @@ extern const char* JACK_METADATA_SIGNAL_TYPE;
 } /* namespace */
 #endif
 
-#endif  /* __jack_metadata_h__ */
+#endif  /* JACK_METADATA_H */

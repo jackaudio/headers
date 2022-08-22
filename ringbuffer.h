@@ -17,8 +17,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef _RINGBUFFER_H
-#define _RINGBUFFER_H
+#ifndef JACK_RINGBUFFER_H
+#define JACK_RINGBUFFER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -231,4 +231,4 @@ size_t jack_ringbuffer_write_space(const jack_ringbuffer_t *rb);
 }
 #endif
 
-#endif
+#endif /* JACK_RINGBUFFER_H */

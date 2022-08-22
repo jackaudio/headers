@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_systemdeps_h__
-#define __jack_systemdeps_h__
+#ifndef JACK_SYSTEMDEPS_H
+#define JACK_SYSTEMDEPS_H
 
 #ifndef POST_PACKED_STRUCTURE
 
@@ -137,4 +137,4 @@
     #define JACK_LIB_EXPORT
 #endif
 
-#endif /* __jack_systemdeps_h__ */
+#endif /* JACK_SYSTEMDEPS_H */

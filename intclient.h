@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_intclient_h__
-#define __jack_intclient_h__
+#ifndef JACK_INTCLIENT_H
+#define JACK_INTCLIENT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -134,4 +134,4 @@ jack_status_t jack_internal_client_unload (jack_client_t *client,
 }
 #endif
 
-#endif /* __jack_intclient_h__ */
+#endif /* JACK_INTCLIENT_H */

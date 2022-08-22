@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __weakmacros_h__
-#define __weakmacros_h__
+#ifndef JACK_WEAKMACROS_H
+#define JACK_WEAKMACROS_H
 
 /*************************************************************
  * NOTE: JACK_WEAK_EXPORT ***MUST*** be used on every function
@@ -63,4 +63,4 @@
 #endif /* __GNUC__ */
 #endif
 
-#endif /* __weakmacros_h__ */
+#endif /* JACK_WEAKMACROS_H */

@@ -23,8 +23,8 @@
  *
  */
 
-#ifndef __jack_control_h__
-#define __jack_control_h__
+#ifndef JACK_CONTROL_H
+#define JACK_CONTROL_H
 
 #include <jack/jslist.h>
 
@@ -559,4 +559,4 @@ jack_log(
 } /* extern "C" */
 #endif
 
-#endif /* __jack_control_h__ */
+#endif /* JACK_CONTROL_H */

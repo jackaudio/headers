@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_uuid_h__
-#define __jack_uuid_h__
+#ifndef JACK_UUID_H
+#define JACK_UUID_H
 
 #include <jack/types.h>
 
@@ -45,4 +45,4 @@ extern int  jack_uuid_empty (jack_uuid_t);
 } /* namespace */
 #endif
 
-#endif /* __jack_uuid_h__ */
+#endif /* JACK_UUID_H */

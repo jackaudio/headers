@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __statistics_h__
-#define __statistics_h__
+#ifndef JACK_STATISTICS_H
+#define JACK_STATISTICS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,4 +51,4 @@ void jack_reset_max_delayed_usecs (jack_client_t *client);
 }
 #endif
 
-#endif /* __statistics_h__ */
+#endif /* JACK_STATISTICS_H */

@@ -17,8 +17,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_types_h__
-#define __jack_types_h__
+#ifndef JACK_TYPES_H
+#define JACK_TYPES_H
 
 #include <inttypes.h>
 #include <pthread.h>
@@ -526,4 +526,4 @@ enum JackPortFlags {
 };
 
 
-#endif /* __jack_types_h__ */
+#endif /* JACK_TYPES_H */

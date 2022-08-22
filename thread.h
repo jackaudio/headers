@@ -16,8 +16,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_thread_h__
-#define __jack_thread_h__
+#ifndef JACK_THREAD_H
+#define JACK_THREAD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -133,4 +133,4 @@ void jack_set_thread_creator (jack_thread_creator_t creator) JACK_OPTIONAL_WEAK_
 }
 #endif
 
-#endif /* __jack_thread_h__ */
+#endif /* JACK_THREAD_H */

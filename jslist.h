@@ -21,8 +21,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_jslist_h__
-#define __jack_jslist_h__
+#ifndef JACK_JSLIST_H
+#define JACK_JSLIST_H
 
 #include <stdlib.h>
 
@@ -299,4 +299,4 @@ jack_slist_sort (JSList       *list,
 				compare_func);
 }
 
-#endif /* __jack_jslist_h__ */
+#endif /* JACK_JSLIST_H */
