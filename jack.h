@@ -119,7 +119,7 @@ char *jack_get_client_name (jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
 
 /**
  * @return pointer to a string representation of the UUID for
- * a client named @param name . If no such client exists, return NULL
+ * a client named `name`. If no such client exists, return NULL
  *
  * @param client the client making the request
  * @param name   the name of the client whose UUID is desired
@@ -807,7 +807,7 @@ int jack_port_set_alias (jack_port_t *port, const char *alias) JACK_OPTIONAL_WEA
 int jack_port_unset_alias (jack_port_t *port, const char *alias) JACK_OPTIONAL_WEAK_EXPORT;
 
 /*
- * Get any aliases known for @port.
+ * Get any aliases known for `port`.
  *
  * @return the number of aliases discovered for the port
  */

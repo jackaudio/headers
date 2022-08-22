@@ -128,7 +128,7 @@ typedef struct {
  * Free a description.
  *
  * @param desc a jack_description_t whose associated memory will all be released
- * @param free_description_itself if non-zero, then @param desc will also be passed to free()
+ * @param free_description_itself if non-zero, then `desc` will also be passed to free()
  */
 void
 jack_free_description (jack_description_t* desc, int free_description_itself);
@@ -212,12 +212,12 @@ typedef void (*JackPropertyChangeCallback)(jack_uuid_t            subject,
                                            void*                  arg);
 
 /**
- * Arrange for @p client to call @p callback whenever a property is created,
+ * Arrange for `client` to call `callback` whenever a property is created,
  * changed or deleted.
  *
  * @param client the JACK client making the request
  * @param callback the function to be invoked when a property change occurs
- * @param arg the argument to be passed to @param callback when it is invoked
+ * @param arg the argument to be passed to `callback` when it is invoked
  *
  * @return 0 success, -1 otherwise.
  */
