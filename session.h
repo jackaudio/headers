@@ -18,8 +18,8 @@
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_session_h__
-#define __jack_session_h__
+#ifndef JACK_SESSION_H
+#define JACK_SESSION_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -299,4 +299,5 @@ jack_client_has_session_callback (jack_client_t *client, const char *client_name
 #ifdef __cplusplus
 }
 #endif
-#endif
+
+#endif /* JACK_SESSION_H */

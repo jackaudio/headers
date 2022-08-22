@@ -1,25 +1,24 @@
 /*
     Copyright (C) 2002 Paul Davis
     Copyright (C) 2003 Jack O'Quin
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation; either version 2.1 of the License, or
     (at your option) any later version.
-    
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program; if not, write to the Free Software 
-    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_transport_h__
-#define __jack_transport_h__
+#ifndef JACK_TRANSPORT_H
+#define JACK_TRANSPORT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -66,94 +65,94 @@ typedef enum {
  * Struct for transport position information.
  */
 typedef struct {
-    
+
     /*@{*/
     /** @name Server-set fields
      * these cannot be set from clients; the server sets them */
     jack_unique_t	unique_1;	/**< unique ID */
-    jack_time_t		usecs;		/**< microsecond timestamp that is guaranteed to be 
-                                             monotonic, but not neccessarily 
-                                             linear. 
+    jack_time_t		usecs;		/**< microsecond timestamp that is guaranteed to be
+                                             monotonic, but not neccessarily
+                                             linear.
 
-                                             The absolute value is 
+                                             The absolute value is
                                              implementation-dependent (i.e. it
-                                             could be wall-clock, time since 
+                                             could be wall-clock, time since
                                              jack started, uptime, etc). */
     jack_nframes_t	frame_rate;	/**< current frame rate, in frames per second */
     /*}@*/
 
     /*@{*/
-    /** @name Mandatory fields 
+    /** @name Mandatory fields
       */
-    jack_nframes_t	frame;		/**< frame number, always present/required. 
-                                             
-                                             This is the frame number on the 
-                                             transport timeline, which is not 
-                                             the same as what @ref 
+    jack_nframes_t	frame;		/**< frame number, always present/required.
+
+                                             This is the frame number on the
+                                             transport timeline, which is not
+                                             the same as what @ref
                                              jack_frame_time returns. */
     jack_position_bits_t valid;		/**< which other fields are valid, as a
-                                             bitmask constructed from values in 
+                                             bitmask constructed from values in
                                              \ref jack_position_bits_t */
     /*}@*/
 
     /*@{*/
-    /** @name JackPositionBBT fields 
-     * Bar:Beat.Tick-related information. 
+    /** @name JackPositionBBT fields
+     * Bar:Beat.Tick-related information.
      *
-     * Applications that support 
+     * Applications that support
      * JackPositionBBT are encouraged to also fill the JackBBTFrameOffset
      */
-    int32_t		bar;		/**< current bar 
+    int32_t		bar;		/**< current bar
 
-                                             Should be >0: the first bar is 
+                                             Should be >0: the first bar is
                                              bar '1'. */
-    int32_t		beat;		/**< current beat-within-bar 
+    int32_t		beat;		/**< current beat-within-bar
 
                                              Should be >0 and <=beats_per_bar:
                                              the first beat is beat '1'.
                                              */
-    int32_t		tick;		/**< current tick-within-beat 
+    int32_t		tick;		/**< current tick-within-beat
 
                                              Should be >= 0 and < ticks_per_beat:
                                              the first tick is tick '0'. */
-    double		bar_start_tick; /**< number of ticks that have elapsed 
+    double		bar_start_tick; /**< number of ticks that have elapsed
                                              between frame 0 and the first beat
                                              of the current measure. */
 
     float		beats_per_bar;	/**< time signature "numerator" */
     float		beat_type;	/**< time signature "denominator" */
-    double		ticks_per_beat; /**< number of ticks within a beat. 
+    double		ticks_per_beat; /**< number of ticks within a beat.
 
                                              Usually a moderately large integer
-                                             with many denominators, such as 
+                                             with many denominators, such as
                                              1920.0 */
     double		beats_per_minute; /**< BPM, quantized to block size. This
                                              means when the tempo is not constant
                                              within this block, the BPM value should
                                              adapted to compensate for this. This
                                              is different from most fields in this
-                                             struct, which specify the value at 
-                                             the beginning of the block rather 
+                                             struct, which specify the value at
+                                             the beginning of the block rather
                                              than an average.*/
     /*}@*/
 
     /*@{*/
-    /** @name JackPositionTimecode fields	
+    /** @name JackPositionTimecode fields
      * EXPERIMENTAL: could change */
     double		frame_time;	/**< current time in seconds */
     double		next_time;	/**< next sequential frame_time
 					     (unless repositioned) */
     /*}@*/
-  
+
     /*@{*/
     /* JackBBTFrameOffset fields */
     jack_nframes_t	bbt_offset;	/**< frame offset for the BBT fields
 					     (the given bar, beat, and tick
 					     values actually refer to a time
 					     frame_offset frames before the
-					     start of the cycle), should 
-					     be assumed to be 0 if 
-					     JackBBTFrameOffset is not 
+					     start of the cycle), should
+					     be assumed to be 0 if
+					     JackBBTFrameOffset is not
 					     set. If JackBBTFrameOffset is
 					     set and this value is zero, the BBT
 					     time refers to the first frame of this
@@ -227,11 +226,11 @@ typedef struct {
 int  jack_release_timebase (jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
 
 /**
- * Prototype for the @a sync_callback defined by @ref slowsyncclients 
- * "slow-sync clients". When the client is active, this callback is 
- * invoked just before process() in the same thread.  This occurs once 
- * after registration, then subsequently whenever some client requests 
- * a new position, or the transport enters the ::JackTransportStarting 
+ * Prototype for the @a sync_callback defined by @ref slowsyncclients
+ * "slow-sync clients". When the client is active, this callback is
+ * invoked just before process() in the same thread.  This occurs once
+ * after registration, then subsequently whenever some client requests
+ * a new position, or the transport enters the ::JackTransportStarting
  * state.  This realtime function must not wait.
  *
  * The transport @a state will be:
@@ -246,7 +245,7 @@ int  jack_release_timebase (jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
  * @param arg the argument supplied by jack_set_sync_callback().
  *
  * @return TRUE (non-zero) when ready to roll.
- */ 
+ */
 typedef int  (*JackSyncCallback)(jack_transport_state_t state,
 				 jack_position_t *pos,
 				 void *arg);
@@ -323,9 +322,9 @@ int  jack_set_sync_timeout (jack_client_t *client,
  * @param new_pos TRUE (non-zero) for a newly requested @a pos, or for
  * the first cycle after the @a timebase_callback is defined.
  * @param arg the argument supplied by jack_set_timebase_callback().
- */ 
+ */
 typedef void (*JackTimebaseCallback)(jack_transport_state_t state,
-				     jack_nframes_t nframes, 
+				     jack_nframes_t nframes,
 				     jack_position_t *pos,
 				     int new_pos,
 				     void *arg);
@@ -366,13 +365,13 @@ int  jack_set_timebase_callback (jack_client_t *client,
  * Reposition the transport to a new frame number.
  *
  * May be called at any time by any client.  The new position takes
- * effect in two process cycles.  If there are @ref slowsyncclients 
- * "slow-sync clients" and the transport is already rolling, it will 
+ * effect in two process cycles.  If there are @ref slowsyncclients
+ * "slow-sync clients" and the transport is already rolling, it will
  * enter the ::JackTransportStarting state and begin invoking their @a
  * sync_callbacks until ready.  This function is realtime-safe.
  *
  * @see jack_transport_reposition, jack_set_sync_callback
- * 
+ *
  * @param client the JACK client structure.
  * @param frame frame number of new transport position.
  *
@@ -407,20 +406,20 @@ jack_transport_state_t jack_transport_query (const jack_client_t *client,
  * @param client the JACK client structure
  */
 jack_nframes_t jack_get_current_transport_frame (const jack_client_t *client) JACK_OPTIONAL_WEAK_EXPORT;
-						 
+
 /**
  * Request a new transport position.
  *
  * May be called at any time by any client.  The new position takes
- * effect in two process cycles.  If there are @ref slowsyncclients 
- * "slow-sync clients" and the transport is already rolling, it will 
+ * effect in two process cycles.  If there are @ref slowsyncclients
+ * "slow-sync clients" and the transport is already rolling, it will
  * enter the ::JackTransportStarting state and begin invoking their @a
  * sync_callbacks until ready.  This function is realtime-safe.
  *
  * @see jack_transport_locate, jack_set_sync_callback
- * 
+ *
  * @param client the JACK client structure.
- * @param pos requested new transport position. Fill pos->valid to specify 
+ * @param pos requested new transport position. Fill pos->valid to specify
  *   which fields should be taken into account. If you mark a set of fields
  *   as valid, you are expected to fill them all.
  *
@@ -481,14 +480,14 @@ typedef enum {
  * interface.  Use the jack_position_t struct, instead.
  */
 typedef struct {
-    
+
     /* these two cannot be set from clients: the server sets them */
 
     jack_nframes_t frame_rate;		/**< current frame rate (per second) */
     jack_time_t    usecs;		/**< monotonic, free-rolling */
 
     jack_transport_bits_t  valid;	/**< which fields are legal to read */
-    jack_transport_state_t transport_state;         
+    jack_transport_state_t transport_state;
     jack_nframes_t         frame;
     jack_nframes_t         loop_start;
     jack_nframes_t         loop_end;
@@ -499,7 +498,7 @@ typedef struct {
     int            bar;
     int            beat;
     int            tick;
-    double         bar_start_tick;            
+    double         bar_start_tick;
 
     float          beats_per_bar;
     float          beat_type;
@@ -507,7 +506,7 @@ typedef struct {
     double         beats_per_minute;
 
 } jack_transport_info_t;
-	
+
 /**
  * Gets the current transport info structure (deprecated).
  *
@@ -537,4 +536,4 @@ void jack_set_transport_info (jack_client_t *client,
 }
 #endif
 
-#endif /* __jack_transport_h__ */
+#endif /* JACK_TRANSPORT_H */

@@ -1,24 +1,23 @@
 /*
- *  Copyright (C) 2004 Jack O'Quin
- *  
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License as published by
- *  the Free Software Foundation; either version 2.1 of the License, or
- *  (at your option) any later version.
- *  
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Lesser General Public License for more details.
- *  
- *  You should have received a copy of the GNU Lesser General Public License
- *  along with this program; if not, write to the Free Software 
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
- */
+    Copyright (C) 2004 Jack O'Quin
 
-#ifndef __jack_intclient_h__
-#define __jack_intclient_h__
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU Lesser General Public License as published by
+    the Free Software Foundation; either version 2.1 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+*/
+
+#ifndef JACK_INTCLIENT_H
+#define JACK_INTCLIENT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -93,9 +92,6 @@ int jack_internal_client_handle (jack_client_t *client,
  * information from the load operation.  This status word is formed by
  * OR-ing together the relevant @ref JackStatus bits.
  *
- * @param handle the client handle will be returned here (passed
- * by reference because of the type.
- *
  * <b>Optional parameters:</b> depending on corresponding [@a options
  * bits] additional parameters may follow @a status (in this order).
  *
@@ -114,7 +110,7 @@ int jack_internal_client_handle (jack_client_t *client,
 int jack_internal_client_load (jack_client_t *client,
                                const char *client_name,
                                jack_options_t options,
-                               jack_status_t *status, 
+                               jack_status_t *status,
                                jack_intclient_t, ...);
 /**
  * Unload an internal client from a JACK server.  This calls the
@@ -135,4 +131,4 @@ jack_status_t jack_internal_client_unload (jack_client_t *client,
 }
 #endif
 
-#endif /* __jack_intclient_h__ */
+#endif /* JACK_INTCLIENT_H */

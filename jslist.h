@@ -1,6 +1,6 @@
 /*
     Based on gslist.c from glib-1.2.9 (LGPL).
- 
+
     Adaption to JACK, Copyright (C) 2002 Kai Vehmanen.
       - replaced use of gtypes with normal ANSI C types
       - glib's memery allocation routines replaced with
@@ -10,20 +10,19 @@
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation; either version 2.1 of the License, or
     (at your option) any later version.
-    
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program; if not, write to the Free Software 
-    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_jslist_h__
-#define __jack_jslist_h__
+#ifndef JACK_JSLIST_H
+#define JACK_JSLIST_H
 
 #include <stdlib.h>
 
@@ -50,7 +49,7 @@ jack_slist_alloc (void)
   return new_list;
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_prepend (JSList   *list,
 		    void     *data)
@@ -65,7 +64,7 @@ jack_slist_prepend (JSList   *list,
 }
 
 #define jack_slist_next(slist)	((slist) ? (((JSList *)(slist))->next) : NULL)
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_last (JSList *list)
 {
@@ -78,7 +77,7 @@ jack_slist_last (JSList *list)
   return list;
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_remove_link (JSList *list,
 		     JSList *link)
@@ -109,7 +108,7 @@ jack_slist_remove_link (JSList *list,
   return list;
 }
 
-static __inline__ 
+static __inline__
 void
 jack_slist_free (JSList *list)
 {
@@ -121,7 +120,7 @@ jack_slist_free (JSList *list)
     }
 }
 
-static __inline__ 
+static __inline__
 void
 jack_slist_free_1 (JSList *list)
 {
@@ -131,7 +130,7 @@ jack_slist_free_1 (JSList *list)
     }
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_remove (JSList   *list,
 		   void     *data)
@@ -164,7 +163,7 @@ jack_slist_remove (JSList   *list,
   return list;
 }
 
-static __inline__ 
+static __inline__
 unsigned int
 jack_slist_length (JSList *list)
 {
@@ -180,7 +179,7 @@ jack_slist_length (JSList *list)
   return length;
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_find (JSList   *list,
 		 void     *data)
@@ -195,7 +194,7 @@ jack_slist_find (JSList   *list,
   return list;
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_copy (JSList *list)
 {
@@ -221,7 +220,7 @@ jack_slist_copy (JSList *list)
   return new_list;
 }
 
-static __inline__ 
+static __inline__
 JSList*
 jack_slist_append (JSList   *list,
 		   void     *data)
@@ -243,9 +242,9 @@ jack_slist_append (JSList   *list,
       return new_list;
 }
 
-static __inline__ 
-JSList* 
-jack_slist_sort_merge  (JSList      *l1, 
+static __inline__
+JSList*
+jack_slist_sort_merge  (JSList      *l1,
 			JSList      *l2,
 			JCompareFunc compare_func)
 {
@@ -259,40 +258,40 @@ jack_slist_sort_merge  (JSList      *l1,
         {
 	  l=l->next=l1;
 	  l1=l1->next;
-        } 
-      else 
+        }
+      else
 	{
 	  l=l->next=l2;
 	  l2=l2->next;
         }
     }
   l->next= l1 ? l1 : l2;
-  
+
   return list.next;
 }
 
-static __inline__ 
-JSList* 
+static __inline__
+JSList*
 jack_slist_sort (JSList       *list,
 		 JCompareFunc compare_func)
 {
   JSList *l1, *l2;
 
-  if (!list) 
+  if (!list)
     return NULL;
-  if (!list->next) 
+  if (!list->next)
     return list;
 
-  l1 = list; 
+  l1 = list;
   l2 = list->next;
 
   while ((l2 = l2->next) != NULL)
     {
-      if ((l2 = l2->next) == NULL) 
+      if ((l2 = l2->next) == NULL)
 	break;
       l1=l1->next;
     }
-  l2 = l1->next; 
+  l2 = l1->next;
   l1->next = NULL;
 
   return jack_slist_sort_merge (jack_slist_sort (list, compare_func),
@@ -300,4 +299,4 @@ jack_slist_sort (JSList       *list,
 				compare_func);
 }
 
-#endif /* __jack_jslist_h__ */
+#endif /* JACK_JSLIST_H */

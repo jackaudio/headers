@@ -14,11 +14,10 @@
     You should have received a copy of the GNU Lesser General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-
 */
 
-#ifndef __jack_thread_h__
-#define __jack_thread_h__
+#ifndef JACK_THREAD_H
+#define JACK_THREAD_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -29,10 +28,10 @@ extern "C" {
 #include <jack/weakmacros.h>
 #include <jack/types.h>
 
-/* use 512KB stack per thread - the default is way too high to be feasible 
+/* use 512KB stack per thread - the default is way too high to be feasible
  * with mlockall() on many systems */
 #define THREAD_STACK 524288
-       
+
 /** @file thread.h
  *
  * Library functions to standardize thread creation for JACK and its
@@ -47,7 +46,7 @@ extern "C" {
 
 /**
  * @returns if JACK is running with realtime scheduling, this returns
- * the priority that any JACK-created client threads will run at. 
+ * the priority that any JACK-created client threads will run at.
  * Otherwise returns -1.
  */
 
@@ -115,16 +114,16 @@ typedef int (*jack_thread_creator_t)(jack_native_thread_t*,
  * are created by something other than pthread_create(). After
  * it is used, any threads that JACK needs for the client will
  * will be created by calling the function passed to this
- * function. 
+ * function.
  *
  * No normal application/client should consider calling this.
  * The specific case for which it was created involves running
  * win32/x86 plugins under Wine on Linux, where it is necessary
  * that all threads that might call win32 functions are known
  * to Wine.
- * 
+ *
  * @param creator a function that creates a new thread
- * 
+ *
  */
 void jack_set_thread_creator (jack_thread_creator_t creator) JACK_OPTIONAL_WEAK_EXPORT;
 
@@ -134,4 +133,4 @@ void jack_set_thread_creator (jack_thread_creator_t creator) JACK_OPTIONAL_WEAK_
 }
 #endif
 
-#endif /* __jack_thread_h__ */
+#endif /* JACK_THREAD_H */

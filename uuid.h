@@ -1,24 +1,23 @@
 /*
     Copyright (C) 2013 Paul Davis
-    
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation; either version 2.1 of the License, or
     (at your option) any later version.
-    
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
-    
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program; if not, write to the Free Software 
-    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+    You should have received a copy of the GNU Lesser General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 */
 
-#ifndef __jack_uuid_h__
-#define __jack_uuid_h__
+#ifndef JACK_UUID_H
+#define JACK_UUID_H
 
 #include <jack/types.h>
 
@@ -46,5 +45,4 @@ extern int  jack_uuid_empty (jack_uuid_t);
 } /* namespace */
 #endif
 
-#endif /* __jack_uuid_h__ */
-
+#endif /* JACK_UUID_H */
