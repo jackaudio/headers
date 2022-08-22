@@ -92,9 +92,6 @@ int jack_internal_client_handle (jack_client_t *client,
  * information from the load operation.  This status word is formed by
  * OR-ing together the relevant @ref JackStatus bits.
  *
- * @param handle the client handle will be returned here (passed
- * by reference because of the type.
- *
  * <b>Optional parameters:</b> depending on corresponding [@a options
  * bits] additional parameters may follow @a status (in this order).
  *
